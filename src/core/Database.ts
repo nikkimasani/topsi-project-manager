@@ -1,33 +1,15 @@
-import path from "path";
-import fs from "fs";
-import os from "os";
 import { DBFile } from "./DBFile";
 
 // Class containing all kind of helper functions to access
 // write and alter the local database.
 export class DBUtils {
-  private dataPath: string = "";
   private context!: DBFile;
   private dbFilePath: string;
   private content: any;
 
   constructor(private readonly name: string, defaultPath: string | null = null) {
-    // Paths
-    const dir =
-      process.platform == "darwin"
-        ? path.join(os.homedir(), ".nikki-project-manager")
-        : path.resolve(".");
-
-    this.dataPath =
-      defaultPath == null || defaultPath.length <= 0 ? path.join(dir, "data/") : defaultPath;
-    this.dbFilePath = path.join(this.dataPath, this.name);
-
-    // Make sure the 'data' folder exists
-    if (!fs.existsSync(this.dataPath)) {
-      throw new Error("Path not found");
-      // if (process.platform == "darwin" && !fs.existsSync(dir)) fs.mkdirSync(dir);
-      // fs.mkdirSync(this.dataPath);
-    }
+    // The web version stores each database locally in the browser.
+    this.dbFilePath = defaultPath && defaultPath.length > 0 ? `${defaultPath}/${this.name}` : this.name;
     this.context = new DBFile(this.dbFilePath);
 
     this.initializeContent();
@@ -180,6 +162,6 @@ export class DBUtils {
   }
 
   public getDataPath() {
-    return this.dataPath;
+    return "browser-local-storage";
   }
 }

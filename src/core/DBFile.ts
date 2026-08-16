@@ -1,18 +1,15 @@
-import fs from "fs";
-
 export class DBFile {
+  private readonly storageKey: string;
+
   constructor(public readonly path: string) {
-    if (!fs.existsSync(path)) {
-      fs.writeFileSync(path, "{}");
+    this.storageKey = `nikki-project-manager:${path}`;
+    if (window.localStorage.getItem(this.storageKey) == null) {
+      window.localStorage.setItem(this.storageKey, "{}");
     }
   }
 
   public write(content: any) {
-    fs.writeFile(this.path, content, err => {
-      if (err != null) {
-        throw err;
-      }
-    });
+    window.localStorage.setItem(this.storageKey, content);
   }
 
   public async append(content: any) {
@@ -21,6 +18,6 @@ export class DBFile {
   }
 
   public read(): string {
-    return fs.readFileSync(this.path, "utf-8");
+    return window.localStorage.getItem(this.storageKey) || "{}";
   }
 }
