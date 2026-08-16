@@ -1,6 +1,8 @@
-# This project is no longer maintained 
+# Nikki Project Manager
 
-# Topsi Project Manager
+Nikki Project Manager is an independently maintained, standalone desktop Kanban app. It is based on [Physiix/topsi-project-manager](https://github.com/Physiix/topsi-project-manager) and remains licensed under the GNU AGPLv3; see [LICENSE.txt](LICENSE.txt).
+
+> The upstream project is no longer maintained. This repository is the maintained source for this version.
 
 ## Master branch is broken right now, a stable branch will be created as soon as it's ready.
 

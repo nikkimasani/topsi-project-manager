@@ -14,7 +14,9 @@ export class DBUtils {
   constructor(private readonly name: string, defaultPath: string | null = null) {
     // Paths
     const dir =
-      process.platform == "darwin" ? path.join(os.homedir(), ".topsi") : path.resolve(".");
+      process.platform == "darwin"
+        ? path.join(os.homedir(), ".nikki-project-manager")
+        : path.resolve(".");
 
     this.dataPath =
       defaultPath == null || defaultPath.length <= 0 ? path.join(dir, "data/") : defaultPath;

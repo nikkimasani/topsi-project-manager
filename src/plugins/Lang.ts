@@ -1,13 +1,13 @@
 export const LangData = {
   en: {
-    projectName: "Topsi Project Manager",
-    firstUseWelcome: "Welcome to Topsi Project Manager",
+    projectName: "Nikki Project Manager",
+    firstUseWelcome: "Welcome to Nikki Project Manager",
     firstUseContent: `<strong>Press CTRL+D at any time to display the help page.</strong> <br /> Since this is the first time you're using this application, please setup the next default values to be used by the application. <br/> <br/> All the settings can be
 		<strong>modified </strong> at any time.`,
     firstUseSetupFolder: "Setup the default folder to store your projects.",
     firstUseSetupColor: "Setup the default application color",
     aboutContent:
-      "Topsi Project Manager is a simple kanban board software built with electron and vuejs. It supports all three major platforms (Windows, Linux and OSX). It's free and Open Source under the AGPL V3 Clause.<br /><br /><br /> <strong>github: </strong> <a>https://github.com/Physiix/topsi-project-manager</a>",
+      "Nikki Project Manager is a standalone Kanban board built with Electron and Vue.js. It supports Windows, Linux, and macOS. It is free and open source under the AGPLv3 license.<br /><br /><br /> <strong>Source: </strong> <a href=\"https://github.com/nikkimasani/topsi-project-manager\">https://github.com/nikkimasani/topsi-project-manager</a>",
     searchLabel: "Search by title, tags, project...",
     helperTitle: "Helper/Shortcuts",
     newMilestoneLabel: "Milestone Name",
@@ -48,13 +48,13 @@ export const LangData = {
     add: "Add"
   },
   zh: {
-    projectName: "Topsi 项目管理",
-    firstUseWelcome: "欢迎使用 Topsi 项目管理",
+    projectName: "Nikki 项目管理",
+    firstUseWelcome: "欢迎使用 Nikki 项目管理",
     firstUseContent: `<strong>任何时候按下 CTRL+D 可以显示帮助页面.</strong> <br /> 由于这是你第一次使用这个应用，请设置应用程序要使用的默认值 <br/> <br/> 所有设置在任何时候都可以<strong>修改 </strong>。`,
     firstUseSetupFolder: "设置默认的文件夹去保存你的项目。",
     firstUseSetupColor: "设置项目默认颜色",
     aboutContent:
-      "Topsi项目管理是一个简单的基于 electron 和 vuejs 的看板软件。它支持所有的第三方平台 (Windows, Linux 和 OSX). 它是基于 AGPL V3 协议免费开源的。<br /><br /><br /> <strong>github: </strong> <a>https://github.com/Physiix/topsi-project-manager</a>",
+      "Nikki 项目管理是一个独立的、基于 Electron 和 Vue.js 的看板软件。它支持 Windows、Linux 和 macOS，并基于 AGPLv3 协议免费开源。<br /><br /><br /> <strong>源码：</strong> <a href=\"https://github.com/nikkimasani/topsi-project-manager\">https://github.com/nikkimasani/topsi-project-manager</a>",
     searchLabel: "搜索标题、标签、项目... ...",
     helperTitle: "帮助/快捷键",
     newMilestoneLabel: "里程碑名称",

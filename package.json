@@ -1,6 +1,6 @@
 {
-    "name": "topsi_project_manager",
-    "description": "An electron-vue project",
+    "name": "nikki-project-manager",
+    "description": "Nikki's standalone Kanban project manager for desktop",
     "license": "AGPL-3.0",
     "version": "0.1.0",
     "private": true,
