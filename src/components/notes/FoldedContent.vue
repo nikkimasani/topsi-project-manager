@@ -3,7 +3,7 @@
     <v-card class="px-2 elevation-3" style="cursor:pointer;">
       <v-btn icon style="width:0px;" @click="unfold">
         <v-icon small class="pr-2">
-          add
+          mdi-unfold-more-horizontal
         </v-icon>
       </v-btn>
       <strong>{{ category.title.toUpperCase() }}</strong>

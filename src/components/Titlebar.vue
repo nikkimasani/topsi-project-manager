@@ -64,6 +64,8 @@
   </div>
 </template>
 <script>
+import { isElectron } from "@/core/Environment";
+
 export default {
   name: "Titlebar",
   data() {
@@ -126,6 +128,7 @@ export default {
   },
 
   created() {
+    if (!isElectron()) return;
     this.window = require("electron").remote.getCurrentWindow();
     this.maximized = this.window.isMaximized();
   }

@@ -15,7 +15,7 @@
       <Notes v-else />
     </div>
     <!-- The titlebar needs to be on top of the other divs, so it's the last one to be rendered. -->
-    <Titlebar v-if="!macos" />
+    <Titlebar v-if="isElectronApp && !macos" />
   </div>
 </template>
 
@@ -23,6 +23,7 @@
 import Helper from "./Helper.vue";
 import AppManager from "@/core/ApplicationManager";
 import InputManager from "@/core/InputManager";
+import { isElectron } from "@/core/Environment";
 
 import Titlebar from "./Titlebar.vue";
 import Notes from "./notes/Notes.vue";
@@ -73,6 +74,10 @@ export default {
       return this.$store.getters.isMac;
     },
 
+    isElectronApp() {
+      return isElectron();
+    },
+
     dialogEnabled() {
       return false;
     },
@@ -86,7 +91,7 @@ export default {
   },
   mounted() {
     AppManager.setupLandingPage(
-      this.macos ? 0 : 30,
+      this.isElectronApp && !this.macos ? 30 : 0,
       "container",
       "side",
       "content"

@@ -7,15 +7,16 @@
       v-model="folder"
       solo
     ></v-text-field>
-    <div>
+    <div v-if="isElectronApp">
       <v-icon v-if="folderExists" color="success">
-        check
+        mdi-check
       </v-icon>
       <v-icon v-else color="error">
-        close
+        mdi-close
       </v-icon>
     </div>
     <v-btn
+      v-if="isElectronApp"
       @click="openDialog"
       class="elevation-5 justify-right text-xs-right"
       color="primary"
@@ -26,10 +27,7 @@
   </v-toolbar>
 </template>
 <script>
-const fs = require("fs");
-const os = require("os");
-const path = require("path");
-const electron = require("electron");
+import { isElectron } from "@/core/Environment";
 
 export default {
   name: "FolderInput",
@@ -39,7 +37,8 @@ export default {
   },
   data() {
     return {
-      folder: this.value
+      folder: this.value,
+      isElectronApp: isElectron()
     };
   },
   watch: {
@@ -49,11 +48,15 @@ export default {
   },
   computed: {
     folderExists() {
-      return fs.existsSync(this.folder);
+      if (!this.isElectronApp) return true;
+      return require("fs").existsSync(this.folder);
     }
   },
   methods: {
     openDialog() {
+      if (!this.isElectronApp) return;
+      const electron = require("electron");
+      const path = require("path");
       const { dialog } = electron.remote;
       // Get the selected folder by the user.
       this.folder = dialog.showOpenDialog(electron.remote.getCurrentWindow(), {

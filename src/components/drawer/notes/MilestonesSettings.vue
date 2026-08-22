@@ -3,7 +3,7 @@
     <Tooltip content="Current milestone settings" top>
       <v-list-item id="milestone-button" @click="">
         <v-list-item-action>
-          <v-icon style="margin-left:-2px">timeline</v-icon>
+          <v-icon style="margin-left:-2px">{{ mdiFormatListNumberedRtl }}</v-icon>
         </v-list-item-action>
       </v-list-item>
     </Tooltip>
@@ -30,12 +30,12 @@
               <v-spacer></v-spacer>
               <v-btn v-if="!listOpened" icon @click="open">
                 <v-icon>
-                  keyboard_arrow_down
+                  {{ mdiChevronDown }}
                 </v-icon>
               </v-btn>
               <v-btn v-else icon @click="close">
                 <v-icon>
-                  keyboard_arrow_up
+                  {{ mdiChevronUp }}
                 </v-icon>
               </v-btn>
               <v-spacer></v-spacer>
@@ -113,10 +113,15 @@
   </div>
 </template>
 <script>
+import { mdiFormatListNumberedRtl, mdiChevronDown, mdiChevronUp } from "@mdi/js";
+
 export default {
   name: "MilestonesSettings",
   data() {
     return {
+      mdiFormatListNumberedRtl,
+      mdiChevronDown,
+      mdiChevronUp,
       title: "Milestone",
       finishingCategory: "",
       selected: [2],

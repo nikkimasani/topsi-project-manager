@@ -26,6 +26,7 @@ import FoldedContent from "./FoldedContent.vue";
 import AddNoteButton from "./AddNoteButton.vue";
 import Content from "./Content.vue";
 import { Dialogs } from "../../core/Constants";
+import { isElectron } from "@/core/Environment";
 
 export default {
   name: "Notes",
@@ -55,11 +56,15 @@ export default {
 
     macos() {
       return this.$store.getters.isMac;
+    },
+
+    titlebarHeight() {
+      return isElectron() && !this.macos ? 30 : 0;
     }
   },
   mounted() {
     AppManager.setupNotesPage(
-      this.macos ? 0 : 30,
+      this.titlebarHeight,
       "notes_container",
       "container",
       this.categories
@@ -72,7 +77,7 @@ export default {
     EventManager.subscribe("update-notes-component", () => {
       this.$nextTick(() => {
         AppManager.setupNotesPage(
-          this.macos ? 0 : 30,
+          this.titlebarHeight,
           "notes_container",
           "container",
           this.categories

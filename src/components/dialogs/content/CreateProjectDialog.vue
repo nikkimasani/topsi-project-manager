@@ -1,11 +1,11 @@
 <script lang="ts">
-import os from "os";
 import Vue, { VNode } from "vue";
 import Quill from "quill";
 import Component from "vue-class-component";
 import { Category, Project } from "../../../core/Data";
 import Title from "../utils/Title.vue";
 import { CreateElement } from "vue/types/umd";
+import { isElectron } from "@/core/Environment";
 
 // User input for the Dialog.
 class Input {
@@ -45,7 +45,7 @@ export default class extends Vue {
     return (
       this.input.title.length === 0 ||
       this.input.categories.length === 0 ||
-      this.input.selectedFolder.length === 0
+      (isElectron() && this.input.selectedFolder.length === 0)
     );
   }
 
@@ -53,7 +53,9 @@ export default class extends Vue {
    * Open OS's dialog to chose a folder.
    */
   private selectFolder() {
+    if (!isElectron()) return;
     const electron = require("electron");
+    const os = require("os");
     this.input.selectedFolder = electron.remote.dialog.showOpenDialogSync(
       electron.remote.getCurrentWindow(),
       {
@@ -199,7 +201,9 @@ export default class extends Vue {
      * Select folder where to store the project's file.
      */
     const selectFolder = () =>
-      h("div", { class: "create-project__folder-input " }, [
+      !isElectron()
+        ? null
+        : h("div", { class: "create-project__folder-input " }, [
         h(
           "v-btn",
           {

@@ -75,6 +75,7 @@ export default class extends Vue {
       document.getElementsByClassName("ql-editor")[0].innerHTML,
       this.note.category,
       this.note.color,
+      this.note.textColor,
       this.note.milestoneId,
       this.note.tags
     );

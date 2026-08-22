@@ -26,7 +26,7 @@
         class="mx-1 py-3 milestone text-xs-center elevation-0"
         @click.native="addMilestone"
       >
-        <v-icon color="primary">add</v-icon>
+        <v-icon color="primary">{{ mdiPlus }}</v-icon>
       </v-card>
       <v-card ref="flash_input" width="500" class="secondary elevation-24" dark>
         <v-card-title class="py-0">
@@ -44,11 +44,13 @@
 </template>
 <script>
 import Utils from "@/core/Utils";
+import { mdiPlus } from "@mdi/js";
 
 export default {
   name: "MilestonesList",
   data() {
     return {
+      mdiPlus,
       milestoneName: ""
     };
   },

@@ -20,7 +20,7 @@
         </v-card-title>
         <v-card-title class="pa-0">
           <v-card-text class="ma-0 ml-4">{{ this.$lang.Get("firstUseSetupColor") }}</v-card-text>
-          <ColorPicker width="600" padding="10" @color-selected="selectColor"></ColorPicker>
+          <ColorPicker v-model="defaultColor" @input="selectColor"></ColorPicker>
         </v-card-title>
         <v-divider></v-divider>
         <v-card-actions>
@@ -35,13 +35,14 @@
 </template>
 
 <script>
-const os = require("os");
+import { isElectron } from "@/core/Environment";
 
 export default {
   name: "FirstUse",
   data() {
     return {
       defaultFolder: null,
+      defaultColor: this.$store.getters.appColor,
       dialog: true
     };
   },
@@ -51,6 +52,9 @@ export default {
     },
 
     openDialog() {
+      if (!isElectron()) return;
+      const electron = require("electron");
+      const path = require("path");
       const { dialog } = electron.remote;
       // Get the selected folder by the user.
       this.defaultFolder = dialog.showOpenDialog(electron.remote.getCurrentWindow(), {
@@ -63,14 +67,14 @@ export default {
 
     done() {
       this.$store.dispatch("SetupApplication", {
-        defaultFolder: this.defaultFolder
+        defaultFolder: this.defaultFolder || ""
       });
       this.dialog = false;
     }
   },
 
   created() {
-    this.defaultFolder = os.homedir();
+    this.defaultFolder = isElectron() ? require("os").homedir() : "";
   }
 };
 </script>
